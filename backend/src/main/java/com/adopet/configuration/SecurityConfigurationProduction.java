@@ -1,7 +1,6 @@
 package com.adopet.configuration;
 
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,15 +41,14 @@ public class SecurityConfigurationProduction {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
+        .csrf(csrf -> csrf
+            .disable())
         .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-            .requestMatchers("/home/**").authenticated()
+            .requestMatchers("/animals/**").authenticated()
             .anyRequest().permitAll())
         .httpBasic(Customizer.withDefaults())
         .formLogin(formLogin -> formLogin
-            .loginPage("/login")
-            .loginProcessingUrl("/authentication")
-            .failureForwardUrl("/login?failure")
-            .successForwardUrl("/home")
+            .defaultSuccessUrl("/animals")
             .permitAll())
         .logout(logout -> logout
             .permitAll())
@@ -70,12 +68,19 @@ public class SecurityConfigurationProduction {
     JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
 
     jdbcDao.setDataSource(dataSource);
+    jdbcDao.setUsersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?");
+    jdbcDao.setAuthoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?");
 
-    String insertUserQuery = "INSERT INTO users (username, password, enabled, roles) VALUES (?, ?, true, ?) "
+    String insertUserQuery = "INSERT INTO users (username, password, enabled) VALUES (?, ?, true) "
         + "ON CONFLICT (username) DO NOTHING";
 
-    jdbcTemplate.update(insertUserQuery, userUsername, passwordEncoder().encode(userPassword), "USER");
-    jdbcTemplate.update(insertUserQuery, adminUsername, passwordEncoder().encode(adminPassword), "ADMIN");
+    String insertAuthorityQuery = "INSERT INTO authorities (username, authority) VALUES (?, ?) "
+        + "ON CONFLICT (username, authority) DO NOTHING";
+
+    jdbcTemplate.update(insertUserQuery, userUsername, passwordEncoder().encode(userPassword));
+    jdbcTemplate.update(insertUserQuery, adminUsername, passwordEncoder().encode(adminPassword));
+    jdbcTemplate.update(insertAuthorityQuery, userUsername, "USER");
+    jdbcTemplate.update(insertAuthorityQuery, adminUsername, "ADMIN");
 
     return jdbcDao;
   }

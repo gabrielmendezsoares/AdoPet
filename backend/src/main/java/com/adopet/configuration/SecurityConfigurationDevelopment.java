@@ -36,15 +36,13 @@ public class SecurityConfigurationDevelopment {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
+        .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-            .requestMatchers("/home/**").authenticated()
+            .requestMatchers("/animals/**").authenticated()
             .anyRequest().permitAll())
         .httpBasic(Customizer.withDefaults())
         .formLogin(formLogin -> formLogin
-            .loginPage("/login")
-            .loginProcessingUrl("/authentication")
-            .failureForwardUrl("/login?failure")
-            .successForwardUrl("/home")
+            .defaultSuccessUrl("/animals")
             .permitAll())
         .logout(logout -> logout
             .permitAll())

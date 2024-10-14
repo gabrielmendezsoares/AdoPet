@@ -11,7 +11,7 @@ public class CorsConfiguration implements WebMvcConfigurer {
   @Value("${cors.allowed.origin}")
   private String allowedOrigin;
 
-  private static final String[] ALLOWED_METHODS = { "GET", "POST", "PUT", "DELETE", "OPTIONS" };
+  private static final String[] ALLOWED_METHODS = { "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS" };
 
   @Override
   public void addCorsMappings(CorsRegistry registry) {
