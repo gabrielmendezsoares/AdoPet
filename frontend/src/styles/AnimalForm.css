@@ -1,0 +1,48 @@
+.animal-form {
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 20px;
+  margin: 120px auto;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.animal-form__input,
+.animal-form__textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+  outline: none;
+  padding: 12px;
+}
+
+.animal-form__textarea {
+  resize: none;
+}
+
+.animal-form__input:focus,
+.animal-form__textarea:focus {
+  border-color: #862dfc;
+  box-shadow: 0 0 5px #6205db;
+}
+
+.animal-form__button {
+  background-color: #862dfc;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1em;
+  padding: 12px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.animal-form__button:hover {
+  background-color: #6205db;
+}

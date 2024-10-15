@@ -17,15 +17,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(&quot;/animals&quot;)
+@CrossOrigin(origins = &quot;http://localhost:3000&quot;, methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+    RequestMethod.DELETE, RequestMethod.PATCH, RequestMethod.OPTIONS })
 @Tag(name = &quot;AnimalController&quot;, description = &quot;Controlador de animais.&quot;)
 public class AnimalController {
 
   private final AnimalService animalService;
 
   @Autowired
-<span class="fc" id="L26">  public AnimalController(AnimalService animalService) {</span>
-<span class="fc" id="L27">    this.animalService = animalService;</span>
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L28">  public AnimalController(AnimalService animalService) {</span>
+<span class="fc" id="L29">    this.animalService = animalService;</span>
+<span class="fc" id="L30">  }</span>
 
   /**
    * Retorna todos os animais.
@@ -36,9 +38,9 @@ public class AnimalController {
   @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Lista de animais retornada com sucesso&quot;)
   @GetMapping
   public ResponseEntity&lt;List&lt;Animal&gt;&gt; findAll() {
-<span class="fc" id="L39">    List&lt;Animal&gt; animals = animalService.findAll();</span>
+<span class="fc" id="L41">    List&lt;Animal&gt; animals = animalService.findAll();</span>
 
-<span class="fc" id="L41">    return ResponseEntity.ok(animals);</span>
+<span class="fc" id="L43">    return ResponseEntity.ok(animals);</span>
   }
 
   /**
@@ -55,12 +57,12 @@ public class AnimalController {
   @GetMapping(&quot;/{id}&quot;)
   public ResponseEntity&lt;Animal&gt; findById(
       @Parameter(description = &quot;ID do animal que deseja buscar&quot;, required = true) @PathVariable Long id) {
-<span class="nc" id="L58">    Optional&lt;Animal&gt; optionalAnimal = animalService.findById(id);</span>
+<span class="nc" id="L60">    Optional&lt;Animal&gt; optionalAnimal = animalService.findById(id);</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">    if (optionalAnimal.isPresent()) {</span>
-<span class="nc" id="L61">      return ResponseEntity.ok(optionalAnimal.get());</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">    if (optionalAnimal.isPresent()) {</span>
+<span class="nc" id="L63">      return ResponseEntity.ok(optionalAnimal.get());</span>
     } else {
-<span class="nc" id="L63">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
+<span class="nc" id="L65">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
     }
   }
 
@@ -77,9 +79,9 @@ public class AnimalController {
   })
   @PostMapping
   public ResponseEntity&lt;Animal&gt; create(@RequestBody Animal newAnimal) {
-<span class="fc" id="L80">    Animal createdAnimal = animalService.create(newAnimal);</span>
+<span class="fc" id="L82">    Animal createdAnimal = animalService.create(newAnimal);</span>
 
-<span class="fc" id="L82">    return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);</span>
+<span class="fc" id="L84">    return ResponseEntity.status(HttpStatus.CREATED).body(createdAnimal);</span>
   }
 
   /**
@@ -99,15 +101,15 @@ public class AnimalController {
   public ResponseEntity&lt;Animal&gt; update(
       @Parameter(description = &quot;ID do animal que deseja atualizar&quot;, required = true) @PathVariable Long id,
       @RequestBody Animal newAnimal) {
-<span class="nc" id="L102">    Optional&lt;Animal&gt; optionalAnimal = animalService.findById(id);</span>
+<span class="nc" id="L104">    Optional&lt;Animal&gt; optionalAnimal = animalService.findById(id);</span>
 
-<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (!optionalAnimal.isPresent()) {</span>
-<span class="nc" id="L105">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">    if (!optionalAnimal.isPresent()) {</span>
+<span class="nc" id="L107">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
     }
 
-<span class="nc" id="L108">    Animal updatedAnimal = animalService.update(optionalAnimal.get(), newAnimal);</span>
+<span class="nc" id="L110">    Animal updatedAnimal = animalService.update(optionalAnimal.get(), newAnimal);</span>
 
-<span class="nc" id="L110">    return ResponseEntity.ok(updatedAnimal);</span>
+<span class="nc" id="L112">    return ResponseEntity.ok(updatedAnimal);</span>
   }
 
   /**
@@ -124,13 +126,13 @@ public class AnimalController {
   @DeleteMapping(&quot;/{id}&quot;)
   public ResponseEntity&lt;Void&gt; delete(
       @Parameter(description = &quot;ID do animal que deseja deletar&quot;, required = true) @PathVariable Long id) {
-<span class="pc bpc" id="L127" title="1 of 2 branches missed.">    if (!animalService.existsById(id)) {</span>
-<span class="nc" id="L128">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">    if (!animalService.existsById(id)) {</span>
+<span class="nc" id="L130">      throw new ResourceNotFoundException(&quot;Animal not found with id &quot; + id);</span>
     }
 
-<span class="fc" id="L131">    animalService.delete(id);</span>
+<span class="fc" id="L133">    animalService.delete(id);</span>
 
-<span class="fc" id="L133">    return ResponseEntity.noContent().build();</span>
+<span class="fc" id="L135">    return ResponseEntity.noContent().build();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

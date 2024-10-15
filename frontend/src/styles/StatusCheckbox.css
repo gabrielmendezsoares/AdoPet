@@ -1,0 +1,19 @@
+.container {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 8px 0 0 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.label {
+  color: #666;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+
+.checkbox {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}

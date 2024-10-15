@@ -5,8 +5,8 @@ AdoPet,com.adopet.model,Authority,21,3,0,0,9,1,6,1,6,1
 AdoPet,com.adopet.model,Animal,0,59,0,0,0,25,0,17,0,17
 AdoPet,com.adopet.exception,ResourceNotFoundException,9,0,0,0,4,0,2,0,2,0
 AdoPet,com.adopet.service,AnimalService,0,41,0,0,0,11,0,7,0,7
-AdoPet,com.adopet.configuration,CorsConfiguration,0,55,0,0,0,9,0,3,0,3
+AdoPet,com.adopet.configuration,CorsConfiguration,0,59,0,0,0,9,0,3,0,3
 AdoPet,com.adopet.configuration,SecurityConfigurationProduction,151,0,0,0,30,0,9,0,9,0
-AdoPet,com.adopet.configuration,SecurityConfigurationDevelopment,0,112,0,0,0,27,0,9,0,9
+AdoPet,com.adopet.configuration,SecurityConfigurationDevelopment,0,186,0,0,0,36,0,11,0,11
 AdoPet,com.adopet.configuration,SwaggerConfiguration,0,17,0,0,0,6,0,2,0,2
 AdoPet,com.adopet.controller,AnimalController,50,35,5,1,10,10,5,4,2,4
