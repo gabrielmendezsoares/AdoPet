@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AdoPet</a> &gt; <a href="index.source.html" class="el_package">com.adopet.model</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package com.adopet.model;
+
+import java.util.Set;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Entity
+@Table(name = &quot;users&quot;)
+@Schema(description = &quot;Representa um usuário do sistema&quot;)
+<span class="nc" id="L12">public class User {</span>
+
+  @Id
+  @Column(unique = true, nullable = false)
+  @NotNull(message = &quot;O nome de usuário não pode ser nulo&quot;)
+  @Schema(description = &quot;Nome de usuário único&quot;, example = &quot;john_doe&quot;)
+  private String username;
+
+  @Column(nullable = false)
+  @NotNull(message = &quot;A senha não pode ser nula&quot;)
+  @Schema(description = &quot;Senha do usuário&quot;, example = &quot;senhaSegura123&quot;)
+  private String password;
+
+  @Column(nullable = false)
+  @Pattern(regexp = &quot;true|false&quot;, message = &quot;O status deve ser 'true' ou 'false'&quot;)
+  @NotNull(message = &quot;O status não pode ser nulo&quot;)
+  @Schema(description = &quot;Indica se o usuário está habilitado&quot;, example = &quot;true&quot;)
+  private boolean enabled;
+
+  @OneToMany(mappedBy = &quot;user&quot;, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @Schema(description = &quot;Conjunto de autoridades atribuídas ao usuário&quot;)
+  private Set&lt;Authority&gt; authorities;
+
+  public String getUsername() {
+<span class="nc" id="L36">    return username;</span>
+  }
+
+  public void setUsername(String username) {
+<span class="nc" id="L40">    this.username = username;</span>
+<span class="nc" id="L41">  }</span>
+
+  public String getPassword() {
+<span class="nc" id="L44">    return password;</span>
+  }
+
+  public void setPassword(String password) {
+<span class="nc" id="L48">    this.password = password;</span>
+<span class="nc" id="L49">  }</span>
+
+  public boolean isEnabled() {
+<span class="nc" id="L52">    return enabled;</span>
+  }
+
+  public void setEnabled(boolean enabled) {
+<span class="nc" id="L56">    this.enabled = enabled;</span>
+<span class="nc" id="L57">  }</span>
+
+  public Set&lt;Authority&gt; getAuthorities() {
+<span class="nc" id="L60">    return authorities;</span>
+  }
+
+  public void setAuthorities(Set&lt;Authority&gt; authorities) {
+<span class="nc" id="L64">    this.authorities = authorities;</span>
+<span class="nc" id="L65">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,12 @@
+com\adopet\service\AnimalService.class
+com\adopet\configuration\SecurityConfigurationDevelopment.class
+com\adopet\model\User.class
+com\adopet\model\Animal.class
+com\adopet\exception\ResourceNotFoundException.class
+com\adopet\model\Authority.class
+com\adopet\controller\AnimalController.class
+com\adopet\repository\AnimalRepository.class
+com\adopet\configuration\SwaggerConfiguration.class
+com\adopet\configuration\CorsConfiguration.class
+com\adopet\AdoPetApplication.class
+com\adopet\configuration\SecurityConfigurationProduction.class

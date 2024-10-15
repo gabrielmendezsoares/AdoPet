@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AnimalService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AdoPet</a> &gt; <a href="index.source.html" class="el_package">com.adopet.service</a> &gt; <span class="el_source">AnimalService.java</span></div><h1>AnimalService.java</h1><pre class="source lang-java linenums">package com.adopet.service;
+
+import com.adopet.model.Animal;
+import com.adopet.repository.AnimalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@Transactional
+public class AnimalService {
+
+  private final AnimalRepository animalRepository;
+
+  @Autowired
+<span class="fc" id="L18">  public AnimalService(AnimalRepository animalRepository) {</span>
+<span class="fc" id="L19">    this.animalRepository = animalRepository;</span>
+<span class="fc" id="L20">  }</span>
+
+  /**
+   * Retorna todos os animais.
+   * 
+   * @return lista de todos os animais
+   */
+  public List&lt;Animal&gt; findAll() {
+<span class="fc" id="L28">    return animalRepository.findAll();</span>
+  }
+
+  /**
+   * Encontra um animal pelo ID.
+   * 
+   * @param id o ID do animal
+   * @return o animal encontrado
+   */
+  public Optional&lt;Animal&gt; findById(Long id) {
+<span class="fc" id="L38">    return animalRepository.findById(id);</span>
+  }
+
+  /**
+   * Cria um novo animal.
+   * 
+   * @param newAnimal o animal a ser criado
+   * @return o animal criado
+   */
+  public Animal create(Animal newAnimal) {
+<span class="fc" id="L48">    return animalRepository.save(newAnimal);</span>
+  }
+
+  /**
+   * Atualiza um animal.
+   * 
+   * @param animal    o animal a ser atualizado
+   * @param newAnimal o animal com os novos dados
+   * @return o animal atualizado
+   */
+  public Animal update(Animal animal, Animal newAnimal) {
+<span class="fc" id="L59">    animal.setStatus(newAnimal.getStatus());</span>
+
+<span class="fc" id="L61">    return animalRepository.save(animal);</span>
+  }
+
+  /**
+   * Deleta um animal pelo ID.
+   * 
+   * @param id o ID do animal
+   */
+  public void delete(Long id) {
+<span class="fc" id="L70">    animalRepository.deleteById(id);</span>
+<span class="fc" id="L71">  }</span>
+
+  /**
+   * Verifica se um animal existe pelo ID.
+   * 
+   * @param id o ID do animal
+   * @return true se o animal existe, false caso contrário
+   */
+  public boolean existsById(Long id) {
+<span class="fc" id="L80">    return animalRepository.existsById(id);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

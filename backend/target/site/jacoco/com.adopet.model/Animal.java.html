@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Animal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">AdoPet</a> &gt; <a href="index.source.html" class="el_package">com.adopet.model</a> &gt; <span class="el_source">Animal.java</span></div><h1>Animal.java</h1><pre class="source lang-java linenums">package com.adopet.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Entity
+@Table(name = &quot;animals&quot;)
+@Schema(description = &quot;Representa um animal para adoção&quot;)
+<span class="fc" id="L12">public class Animal {</span>
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Schema(description = &quot;Identificador único do animal&quot;, example = &quot;1&quot;)
+  private Long id;
+
+  @Column(nullable = false)
+  @NotNull(message = &quot;A imagem não pode ser nula&quot;)
+  @Schema(description = &quot;URL da imagem do animal&quot;, example = &quot;http://exemplo.com/imagem.jpg&quot;)
+  private String image;
+
+  @Column(unique = true, nullable = false)
+  @NotNull(message = &quot;O nome não pode ser nulo&quot;)
+  @Schema(description = &quot;Nome do animal&quot;, example = &quot;Rex&quot;)
+  private String name;
+
+  @Column(nullable = false)
+  @NotNull(message = &quot;A descrição não pode ser nula&quot;)
+  @Schema(description = &quot;Descrição do animal&quot;, example = &quot;Cachorro amigável e brincalhão&quot;)
+  private String description;
+
+  @Column(nullable = false)
+  @NotNull(message = &quot;A categoria não pode ser nula&quot;)
+  @Schema(description = &quot;Categoria do animal (ex: cachorro, gato)&quot;, example = &quot;Cachorro&quot;)
+  private String category;
+
+  @Column(nullable = false)
+  @Pattern(regexp = &quot;\\d{4}-\\d{2}-\\d{2}&quot;, message = &quot;A data de nascimento deve seguir o padrão 'yyyy-MM-dd'&quot;)
+  @NotNull(message = &quot;A data de nascimento não pode ser nula&quot;)
+  @Schema(description = &quot;Data de nascimento do animal&quot;, example = &quot;2022-01-01&quot;)
+  private String birthday;
+
+  @Column(nullable = false)
+  @Min(value = 0, message = &quot;A idade deve ser maior ou igual a 0&quot;)
+  @NotNull(message = &quot;A idade não pode ser nula&quot;)
+  @Schema(description = &quot;Idade do animal em anos&quot;, example = &quot;3&quot;)
+  private Integer age;
+
+  @Column(nullable = false)
+  @Pattern(regexp = &quot;Disponível|Adotado&quot;, message = &quot;O status deve ser 'Disponível' ou 'Adotado'&quot;)
+  @NotNull(message = &quot;O status não pode ser nulo&quot;)
+  @Schema(description = &quot;Status do animal&quot;, example = &quot;Disponível&quot;)
+  private String status;
+
+  public Long getId() {
+<span class="fc" id="L58">    return this.id;</span>
+  }
+
+  public void setId(Long id) {
+<span class="fc" id="L62">    this.id = id;</span>
+<span class="fc" id="L63">  }</span>
+
+  public String getImage() {
+<span class="fc" id="L66">    return this.image;</span>
+  }
+
+  public void setImage(String image) {
+<span class="fc" id="L70">    this.image = image;</span>
+<span class="fc" id="L71">  }</span>
+
+  public String getName() {
+<span class="fc" id="L74">    return this.name;</span>
+  }
+
+  public void setName(String name) {
+<span class="fc" id="L78">    this.name = name;</span>
+<span class="fc" id="L79">  }</span>
+
+  public String getDescription() {
+<span class="fc" id="L82">    return this.description;</span>
+  }
+
+  public void setDescription(String description) {
+<span class="fc" id="L86">    this.description = description;</span>
+<span class="fc" id="L87">  }</span>
+
+  public String getCategory() {
+<span class="fc" id="L90">    return this.category;</span>
+  }
+
+  public void setCategory(String category) {
+<span class="fc" id="L94">    this.category = category;</span>
+<span class="fc" id="L95">  }</span>
+
+  public String getBirthday() {
+<span class="fc" id="L98">    return this.birthday;</span>
+  }
+
+  public void setBirthday(String birthday) {
+<span class="fc" id="L102">    this.birthday = birthday;</span>
+<span class="fc" id="L103">  }</span>
+
+  public Integer getAge() {
+<span class="fc" id="L106">    return this.age;</span>
+  }
+
+  public void setAge(Integer age) {
+<span class="fc" id="L110">    this.age = age;</span>
+<span class="fc" id="L111">  }</span>
+
+  public String getStatus() {
+<span class="fc" id="L114">    return this.status;</span>
+  }
+
+  public void setStatus(String status) {
+<span class="fc" id="L118">    this.status = status;</span>
+<span class="fc" id="L119">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
